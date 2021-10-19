@@ -1,8 +1,0 @@
-black
-compound-split
-flask
-gunicorn
-mypy
-pylint
-stanza
-tqdm
