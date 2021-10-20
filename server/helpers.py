@@ -24,20 +24,5 @@ def add_to_dict(key: A, vals: List[B], dic: Dict[A, List[B]]) -> Dict[A, List[B]
         dic[key] = vals
 
 
-def update_with_backup(fun, file_path) -> None:
-    if path.isfile(file_path + ".old"):
-        file = open_(file_path + ".old").read()
-    else:
-        file = open_(file_path).read()
-        open_(file_path + ".old", "w").write(file)
-    new_file = fun(file)
-    open_(file_path, "w").write(new_file)
-
-
-def update(fun, file_path) -> None:
-    file = open_(file_path).read()
-    new_file = fun(file)
-    open_(file_path, "w").write(new_file)
-
-
-open_ = functools.partial(open, encoding="utf-8")
+def open_(*args):
+    return open(path.join(path.dirname(__file__), *args), encoding="utf-8")
