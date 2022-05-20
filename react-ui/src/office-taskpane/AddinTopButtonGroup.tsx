@@ -33,11 +33,12 @@ const AddinButtonGroupContainer = styled.div`
 const DiversifixLogoLinkTile = () => (
   <DiversifixLogoLinkTileContainer href={logoLinkUrl} target={"_blank"}>
     <DiversifixLogoContainer>
-      <DiversifixLogo />
+      <DiversifixLogo width="100%" />
     </DiversifixLogoContainer>
     <DiversifixLogoLinkText>EINFACH DIVERSITÄTSSENSIBEL</DiversifixLogoLinkText>
   </DiversifixLogoLinkTileContainer>
 );
+
 const DiversifixLogoLinkTileContainer = styled.a`
   background: #ffffff 0% 0% no-repeat padding-box;
   box-shadow: 0px 3px 6px #00000029;

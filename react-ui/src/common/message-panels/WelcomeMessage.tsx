@@ -19,7 +19,7 @@ export const WelcomeMessage = () => (
       <UserSettingsAndFeatureFlagsContext.Consumer>
         {({ featureFlags }) =>
           featureFlags.isBamBuild
-            ? "DIVERSIFIX ist aktuell basierend auf den Präferenzen des BAM Leitfadens für geschlechtersensible Sprache eingestellt. Wenn Du eine andere Gendersprache bevorzugst, kannst Du das in den Einstellungen anpassen."
+            ? "DIVERSIFIX ist aktuell basierend auf den Präferenzen des BAM Leitfadens für geschlechtersensible Sprache eingestellt. Wenn Du einen anderen Genderstil bevorzugst, kannst Du das in den Einstellungen anpassen."
             : "Standardmäßig werden dir Alternativen in neutraler Form oder Doppelnennung vorgeschlagen. In den Einstellungen kannst Du auch einen anderen Genderstil auswählen."
         }
       </UserSettingsAndFeatureFlagsContext.Consumer>
