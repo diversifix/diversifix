@@ -1,4 +1,6 @@
-<h1><img alt="DIVERSIFIX logo" height="40" src="./react-ui/src/common/icons/diversifix-logo.png"></h1>
+<h1><img alt="DIVERSIFIX logo" height="60" src="./react-ui/src/common/icons/diversifix-logo.png"></h1>
+
+[Live Demo 🚀](https://diversifix.org/)
 
 <a href="./doc/images/screenshot-diversifix-welcome-page.png"><img alt="DIVERSIFIX start screen" height="200" src="./doc/images/screenshot-diversifix-welcome-page.png"></a>
 <a href="./doc/images/screenshot-diversifix-with-results.png"><img alt="DIVERSIFIX with results" height="200" src="./doc/images/screenshot-diversifix-with-results.png"></a>
