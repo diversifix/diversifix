@@ -3,7 +3,7 @@ import { DefaultFeatureFlags } from "../feature-flags/feature-flags";
 import { LocalStorageService } from "../local-storage/LocalStorageService";
 import { GenderingTypes, GenderSymbols, UserSettings } from "./user-settings";
 
-const UserSettingsStorageId = "inclusify_app_user_settings";
+const UserSettingsStorageId = "diversifix_app_user_settings";
 
 export const DefaultUserSettings: UserSettings = Object.freeze({
   genderingType: DefaultFeatureFlags.isBamBuild ? "gender-symbol" : "double-notation",

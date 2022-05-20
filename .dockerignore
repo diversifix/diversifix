@@ -6,6 +6,4 @@
 /data/.venv/
 /.venv/
 /__pychache__/
-/inclusify_server/.venv/
-/inclusify_server/__pycache__/
 /.git/lfs/

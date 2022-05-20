@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { Colors } from "../styles/Colors";
 import { Fonts } from "../styles/Fonts";
 import wavingHandEmojiSrc from "../icons/waving-hand-emoji.png";
+import { UserSettingsAndFeatureFlagsContext } from "../UserSettingsAndFeatureFlagsContext";
 
 export const WelcomeMessage = () => (
   <WelcomeMessageContainer>
@@ -10,13 +11,18 @@ export const WelcomeMessage = () => (
         <IntroIcon src={wavingHandEmojiSrc} alt="Waving hand emoji" />
       </IntroIconContainer>
       <IntroTextColumn>
-        <WelcomeMessageIntroLarge>Herzlich Willkommen bei INCLUSIFY.</WelcomeMessageIntroLarge>
+        <WelcomeMessageIntroLarge>Herzlich Willkommen bei DIVERSIFIX.</WelcomeMessageIntroLarge>
       </IntroTextColumn>
     </WelcomeMessageIntroBox>
     <WelcomeMessageBody>
-      Prüfe Deine Texte auf Diversitätslücken. INCLUSIFY ist aktuell basierend auf den Präferenzen des BAM Leitfadens
-      für geschlechtersensible Sprache eingestellt. Wenn Du eine andere Gendersprache bevorzugst, kannst Du das in den
-      Einstellungen anpassen.
+      Prüfe Deine Texte auf Diversitätslücken.
+      <UserSettingsAndFeatureFlagsContext.Consumer>
+        {({ featureFlags }) =>
+          featureFlags.isBamBuild
+            ? "DIVERSIFIX ist aktuell basierend auf den Präferenzen des BAM Leitfadens für geschlechtersensible Sprache eingestellt. Wenn Du eine andere Gendersprache bevorzugst, kannst Du das in den Einstellungen anpassen."
+            : "Standardmäßig werden dir Alternativen in neutraler Form oder Doppelnennung vorgeschlagen. In den Einstellungen kannst Du auch einen anderen Genderstil auswählen."
+        }
+      </UserSettingsAndFeatureFlagsContext.Consumer>
     </WelcomeMessageBody>
   </WelcomeMessageContainer>
 );

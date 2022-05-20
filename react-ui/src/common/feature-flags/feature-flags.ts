@@ -17,7 +17,7 @@ export const DefaultFeatureFlags = Object.freeze({
 
 export type FeatureFlags = typeof DefaultFeatureFlags;
 
-export const FeatureFlagsStorage = new LocalStorageService("inclusify_app_feature_flags", DefaultFeatureFlags, {});
+export const FeatureFlagsStorage = new LocalStorageService("diversifix_app_feature_flags", DefaultFeatureFlags, {});
 
 export const useFeatureFlagsState: () => [FeatureFlags, (setState: (prevState: FeatureFlags) => FeatureFlags) => void] =
   () => {

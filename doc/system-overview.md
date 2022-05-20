@@ -2,7 +2,7 @@
 
 ## System Overview
 
-The INCLUSIFY App system has a classic server-client architecture.
+The DIVERSIFIX App system has a classic server-client architecture.
 
 The client is a React single-page application (SPA) frontend that can be used either standalone in a web browser or as a an add-in for Microsoft Word.
 
@@ -12,7 +12,7 @@ The server is a Python backend that serves the static assets for the frontend an
 
 ## Application user flow
 
-The high-level user workflow of the INCLUSIFY App works as follows:
+The high-level user workflow of the DIVERSIFIX App works as follows:
 
 ![Visualization of user flow](./images/user-flow.png)
 

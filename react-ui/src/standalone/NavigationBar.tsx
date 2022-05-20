@@ -1,7 +1,6 @@
 import styled from "styled-components";
-import { InclusifyBamLogo, InclusifyLogo } from "../common/icons";
+import { DiversifixLogo } from "../common/icons";
 import { Fonts } from "../common/styles/Fonts";
-import { UserSettingsAndFeatureFlagsContext } from "../common/UserSettingsAndFeatureFlagsContext";
 import { CenteredContainer } from "./CenteredContainer";
 import navLinksJson from "../navigation-links.json";
 import { newUuidv4 } from "../common/uuid";
@@ -15,8 +14,11 @@ export const NavigationBar = () => (
     <CenteredContainer>
       <NavBarItemsContainer>
         <NavBarAppIconRow>
-          <NavBarAppIcon />
-          <NavBarAppIconSmallText>einfach diversitätssensibel.</NavBarAppIconSmallText>
+          <NavBarAppIconContainer>
+            <DiversifixLogo />
+          </NavBarAppIconContainer>
+
+          <NavBarAppIconSmallText>EINFACH DIVERSITÄTSSENSIBEL.</NavBarAppIconSmallText>
         </NavBarAppIconRow>
         <NavBarSpacer />
         {navLinks.map((l) => (
@@ -71,16 +73,6 @@ const NavBarAppIconSmallText = styled.div`
   letter-spacing: 0px;
   font-style: italic;
 `;
-
-const NavBarAppIcon = () => (
-  <UserSettingsAndFeatureFlagsContext.Consumer>
-    {({ featureFlags }) => (
-      <NavBarAppIconContainer>
-        {featureFlags.isBamBuild ? <InclusifyBamLogo width="" height="" /> : <InclusifyLogo width="" height="" />}
-      </NavBarAppIconContainer>
-    )}
-  </UserSettingsAndFeatureFlagsContext.Consumer>
-);
 
 const NavBarAppIconContainer = styled.div`
   display: flex;
