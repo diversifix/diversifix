@@ -11,7 +11,7 @@ export const DefaultFeatureFlags = Object.freeze({
   maxReplacementsPerRuleMatch: 5,
   isBamBuild: process.env.REACT_APP_BUILD_FOR_BAM === "1",
   minimumRequestDelayMs: 0,
-  apiBaseUrl: "/v2",
+  apiBaseUrl: process.env.REACT_APP_API_BASE_URL || "/v2",
   showIgnoreButton: false,
 });
 
