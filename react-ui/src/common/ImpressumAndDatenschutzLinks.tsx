@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 export const ImpressumAndDatenschutzLinks: FC<{ isAddin?: boolean }> = ({ isAddin }) => (
   <IDLinksRow>
-    {process.env.REACT_APP_SHOW_IMPRESSUM_AND_DATENSCHUTZ !== "1" ? null : (
+    {process.env.REACT_APP_SHOW_IMPRESSUM_AND_DATENSCHUTZ === "0" ? null : (
       <>
         <IDLink isAddin={!!isAddin} href="./impressum-datenschutz.html">
           Impressum &amp; Datenschutz
