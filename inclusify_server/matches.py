@@ -1,4 +1,4 @@
-from compound_split import char_split
+from split_words import Splitter
 from copy import deepcopy
 from functools import lru_cache
 from inclusify_server.helpers import add_to_dict, log, open_
@@ -18,6 +18,7 @@ print("Loading language models ...")
 tokenize = stanza.Pipeline(lang="de", processors="tokenize")
 nlp = stanza.Pipeline(lang="de", processors="tokenize,mwt,pos,lemma,depparse")
 print("Language models loaded.")
+splitter = Splitter()
 
 Rule = ProcessedRuleWithoutLemma
 
@@ -124,7 +125,7 @@ def matches_per_word(word: Word, sentence: Sentence, recursion=0) -> List[Match]
         suggestions = [alt for alt in suggestions_2 if word.text != alt]
     # Try subwordsplitting when there are not many results:
     if len(suggestions) < 5 and recursion <= 0:
-        split = char_split.split_compound(word.lemma)[0]
+        split = splitter.split_compound(word.lemma)[0]
         if split:
             probability, part1, part2 = split
             # It's not an actual probability, it can be lower than 0 and higher than 1

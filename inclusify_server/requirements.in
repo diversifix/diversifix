@@ -1,5 +1,5 @@
 black
-compound-split
+split-words
 flask
 flask-cors
 gunicorn

@@ -1,4 +1,4 @@
-from compound_split import char_split
+from split_words import Splitter
 from os import path
 from typing import List, Dict, Optional
 from typing_extensions import TypedDict
@@ -21,6 +21,7 @@ for filename in tqdm(filenames):
         add_to_dict_fast(inflected, [(morph, lemma)], inflected_to_lemma)
         add_to_dict_fast(lemma, [(morph, inflected)], lemma_to_inflected)
 print("Done loading morphological dictionary.")
+splitter = Splitter()
 
 
 def inflect(
@@ -48,7 +49,7 @@ def inflect(
             return [word]
         if recursion > 0:
             return []
-        for _, part_1, part_2 in char_split.split_compound(word)[:3]:
+        for _, part_1, part_2 in splitter.split_compound(word)[:3]:
             inflected_part_2s = inflect(
                 part_2, case=case, gender=gender, number=number, recursion=recursion + 1
             )
