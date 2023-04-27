@@ -237,7 +237,10 @@ def is_applicable(rule: Rule, word: Word, sentence: Sentence) -> bool:
         return False
     # If the root is singular but the rule is only applicable in plural
     # Cf. the documentation on rule lists
-    if parse_feats(word.feats)["Number"] == "SIN" and category_id == 2:
+    if category_id == 2 and (
+        ("Number" not in parse_feats(word.feats))
+        or (parse_feats(word.feats)["Number"] == "SIN")
+    ):
         return False
     return True
 
@@ -313,7 +316,8 @@ def simplify_participles(phrase: str, root_of_bad_phrase: Word):
     Simplify phrases like "bewerbende Personen" to "Bewerbende".
     """
     match = re.match(r"(^[a-zäöüß]+(ige|ene|te|nde)n?) (Person|Mensch|Firma)$", phrase)
-    if parse_feats(root_of_bad_phrase.feats)["Number"] == "PLU" and match:
+    feats = parse_feats(root_of_bad_phrase.feats)
+    if match and "Number" in feats and feats["Number"] == "PLU":
         return startupper(match[1])
     else:
         return phrase
