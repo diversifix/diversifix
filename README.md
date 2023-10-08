@@ -1,51 +1,38 @@
-<h1><img alt="INCLUSIFY logo" height="40" src="./react-ui/src/common/icons/inclusify-logo.svg"><img alt="Tech4Germany logo" height="45" src="./doc/images/tech4germany-logo.png" align="right"></h1>
+<h1><img alt="DIVERSIFIX logo" height="60" src="./react-ui/src/common/icons/diversifix-logo.png"></h1>
 
-[ [Live Demo](https://diversifix.org) 🚀 | [Project Info](https://tech.4germany.org/project/diversitaetssensible-sprache-bam/) 💁 | [Tech4Germany Fellowship][t4g] 🤓 ]
+[Live Demo 🚀](https://diversifix.org/)
 
-<a href="./doc/images/screenshot-inclusify-welcome-page.png"><img alt="INCLUSIFY start screen" height="200" src="./doc/images/screenshot-inclusify-welcome-page.png"></a>
-<a href="./doc/images/screenshot-inclusify-with-results.png"><img alt="INCLUSIFY with results" height="200" src="./doc/images/screenshot-inclusify-with-results.png"></a>
+<a href="./doc/images/screenshot-diversifix-welcome-page.png"><img alt="DIVERSIFIX start screen" height="200" src="./doc/images/screenshot-diversifix-welcome-page.png"></a>
+<a href="./doc/images/screenshot-diversifix-with-results.png"><img alt="DIVERSIFIX with results" height="200" src="./doc/images/screenshot-diversifix-with-results.png"></a>
 
-🇬🇧 This is the source code repository of the _INCLUSIFY_ project of the [Tech4Germany Fellowship][t4g] 2021.
-You can use this code under the terms of the provided license.
+## About DIVERSIFIX
 
-🇩🇪 Dies ist das Source-Code Repository des Projekts _INCLUSIFY_ des [Tech4Germany Fellowships][t4g] 2021.
-Sie können den Code unter den Bedingungen der angegeben Lizenz nutzen.
-
-[t4g]: https://tech.4germany.org/
-
-## About INCLUSIFY
-
-Together with the [_Federal Institute for Materials Research and Testing_](https://www.bam.de/) (Bundesanstalt für Materialforschung und –prüfung (BAM)), we developed a software prototype to support the practical use of diversity-sensitive language in German.
+_DIVERSIFIX_ is a software to support the practical use of diversity-sensitive language in German. It was originally developed during the [Tech4Germany Fellowship](https://tech.4germany.org/) 2021 together with the [_Federal Institute for Materials Research and Testing_](https://www.bam.de/) (Bundesanstalt für Materialforschung und –prüfung (BAM)). We have now founded [Diversifix e. V.](https://diversifix.org/about) contribute to its development and adoption.
 
 Our goal is both to promote awareness for diversity and to make every-day use of diversity-sensitive language easier.
 
-INCLUSIFY currently offers two modes of use:
+DIVERSIFIX currently offers two modes of use:
 
 1. A standalone webpage where users can paste their text, receive feedback and improvement suggestions, and apply these to their text in the browser.
 2. An add-in for Microsoft Word, with which users can check their documents right in Word, receive feedback and improvement suggestions, and apply these to their document without leaving the app.
 
-## Using the INCLUSIFY Docker image
+## Using the DIVERSIFIX Docker image
 
 Make sure to have [Docker](https://www.docker.com/) installed and running.
 
-Use the following command to download the INCLUSIFY Docker image and start a new container. Note that the image is quite large and may take some time to download.
+Use the following command to download the DIVERSIFIX Docker image and start a new container. Note that the image is quite large and may take some time to download.
 
 ```sh
-docker run --rm -p 80:80 -ti --pull always ghcr.io/tech4germany/inclusify-app:latest
+docker run --rm -p 80:80 -ti --pull always ghcr.io/diversifix/diversifix-app:latest
 ```
 
-Once you see a message like _"Done loading morphological dictionary."_, you can open http://localhost in your web browser and use the INCLUSIFY web-app from there! 🥳
+Now you can open http://localhost in your web browser and use the DIVERSIFIX web-app from there! 🥳
 
-_Note: This Docker image hosts the app without HTTPS. This is fine for local testing, but isn't appropriate for any kind of deployment where other people use the app. For actual production deployments, consider putting an HTTPS reverse proxy in front of the INCLUSIFY container._
+_Note: This Docker image hosts the app without HTTPS. This is fine for local testing, but isn't appropriate for any kind of deployment where other people use the app. For actual production deployments, consider putting an HTTPS reverse proxy in front of the DIVERSIFIX container._
 
 ## Technical Documentation
 
 See [doc/index.md](./doc/index.md).
-
-## Acknowledgements
-
-- Our app would not be possible without the awesome list of gender-neutral words from [Geschickt gendern - das Genderwörterbuch](https://geschicktgendern.de/).
-- We are thankful for exchanges with [Leibniz-Institut für Deutsche Sprache (IDS)](https://www.ids-mannheim.de/en/), [Duden](https://www.duden.de/), [LanguageTool](https://languagetool.org/de), [gender app](https://genderapp.org/), [fairlanguage](https://fairlanguage.com/), and [Genderly](https://prototypefund.de/project/genderly/).
 
 ## License
 

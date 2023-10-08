@@ -6,7 +6,7 @@ import { Fonts } from "./styles/Fonts";
 export const PilotPhaseBanner = () => (
   <PilotPhaseBannerContainer>
     <InfoIcon width={15} height={15} fill={Colors.darkBlueText} />
-    <PilotPhaseBannerText>INCLUSIFY befindet sich noch in der Testphase.</PilotPhaseBannerText>
+    <PilotPhaseBannerText>DIVERSIFIX befindet sich noch in der Testphase.</PilotPhaseBannerText>
   </PilotPhaseBannerContainer>
 );
 

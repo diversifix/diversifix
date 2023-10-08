@@ -2,9 +2,9 @@
 
 ## Prerequisites for development
 
-- [Node.js](https://nodejs.org/en/) v14 or newer
+- [Node.js](https://nodejs.org/en/) v14 to v18
 - [(Classic) Yarn](https://classic.yarnpkg.com/lang/en/) v1.22 or newer (though not Yarn 2)
-- [Python 3](https://www.python.org/) v3.9 or newer
+- [Python 3](https://www.python.org/) v3.9
 - (optional) if you want to build the Docker image or run the app in a Docker container: [Docker](https://www.docker.com/)
 
 ## First-time setup
@@ -31,7 +31,7 @@ What is where (relative to the repo root):
 - `data/` - word lists, text corpora, and other input data, as well as pre-processing scripts to turn this data into usable inputs for the NLP backend
 - `dev_cmds/` - build scripts and development task automation using [DevCmd](https://github.com/XITASO/devcmd)
 - `doc/` - this documentation
-- `inclusify_server/` - the Python backend that analyzes users' inputs and provides improvement suggestions using NLP methods
+- `diversifix_server/` - the Python backend that analyzes users' inputs and provides improvement suggestions using NLP methods
 - `react-ui/` - the graphical end-user app (frontend) for use as a standalone webpage in a browser and in Word/Outlook add-ins
 
 ## Starting the app for development
@@ -44,4 +44,4 @@ What is where (relative to the repo root):
 - `devcmd build-docker-image`: Creates a Docker image that contains the API backend and the static assets for the frontend, served on port 80 (i.e. non-HTTPS) inside the container. The script prints the name of the created image when it's done, so you can push or export the image easily.
   - `devcmd start-docker`: If you've previously built the Docker image with the command above, you this command starts a new Docker container from this image locally.
 - `devcmd build-zip-file`: Creates a ZIP file in the repository root containing the API backend and the static assets for the frontend. This is intended for directly running the Python backend instead of deploying a Docker container.
-- `devcmd create-addin-manifest`: Installing the Word add-in requires a `manifest.xml` that points to the correct host where the INCLUSIFY app is deployed. This command creates a suitable manifest file for the host URL you provide as an argument.
+- `devcmd create-addin-manifest`: Installing the Word add-in requires a `manifest.xml` that points to the correct host where the DIVERSIFIX app is deployed. This command creates a suitable manifest file for the host URL you provide as an argument.

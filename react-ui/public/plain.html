@@ -1,70 +1,62 @@
 <!DOCTYPE html>
 <html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon-32.png" />
+    <meta name="application-name" content="DIVERSIFIX" />
+    <meta name="built-from-git-sha" content="%REACT_APP_VCS_REVISION%" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title><%= pageTitle %> - DIVERSIFIX</title>
+    <meta name="theme-color" content="#FFFFFF" />
 
-<head>
-  <meta charset="utf-8" />
-  <link rel="icon" href="%PUBLIC_URL%/favicon-32.png" />
-  <meta name="application-name" content="INCLUSIFY" />
-  <meta name="built-from-git-sha" content="%REACT_APP_VCS_REVISION%" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>
-    <%= pageTitle %> - INCLUSIFY
-  </title>
-  <meta name="theme-color" content="#FFFFFF" />
-
-  <style type="text/css">
-    body {
-      background: #E8E8E8;
-      font-family: Roboto, sans-serif;
-      font-size: 16px;
-      font-weight: 300;
-      line-height: 1.4;
-    }
-
-    .centered {
-      max-width: 800px;
-      margin: 20px auto;
-    }
-
-    a {
-      color: rgb(148, 148, 148);
-    }
-
-    #backlink {
-      font-size: 80%;
-    }
-  </style>
-
-  <script type="text/javascript">
-    document.addEventListener("DOMContentLoaded", () => {
-      try {
-        var s = document.location.search || "";
-        var prefix = "?returnTo=";
-        if (s.startsWith(prefix)) {
-          var idx = s.indexOf("&");
-          var r = (idx === -1) ? s.substring(prefix.length) : s.substring(prefix.length, idx);
-          var el = document.getElementById("backlink");
-          if (!!el) {
-            el.href = "./" + r;
-          }
-        }
-      } catch (e) {
-        console.error("Uncaught error in document's load event handler:", e)
+    <style type="text/css">
+      body {
+        background: #e8e8e8;
+        font-family: Roboto, sans-serif;
+        font-size: 16px;
+        font-weight: 300;
+        line-height: 1.4;
       }
-    });
-  </script>
-</head>
 
-<body>
-  <div class="centered">
-    <a id="backlink" href="./index.html">Zurück</a>
-    <h1>
-      <%= pageTitle %> - INCLUSIFY
-    </h1>
-    <div>
-      <%= pageContent %>
+      .centered {
+        max-width: 800px;
+        margin: 20px auto;
+      }
+
+      a {
+        color: rgb(148, 148, 148);
+      }
+
+      #backlink {
+        font-size: 80%;
+      }
+    </style>
+
+    <script type="text/javascript">
+      document.addEventListener("DOMContentLoaded", () => {
+        try {
+          var s = document.location.search || "";
+          var prefix = "?returnTo=";
+          if (s.startsWith(prefix)) {
+            var idx = s.indexOf("&");
+            var r = idx === -1 ? s.substring(prefix.length) : s.substring(prefix.length, idx);
+            var el = document.getElementById("backlink");
+            if (!!el) {
+              el.href = "./" + r;
+            }
+          }
+        } catch (e) {
+          console.error("Uncaught error in document's load event handler:", e);
+        }
+      });
+    </script>
+  </head>
+
+  <body>
+    <div class="centered">
+      <a id="backlink" href="./index.html">Zurück</a>
+      <h1><%= pageTitle %> - DIVERSIFIX</h1>
+      <div><%= pageContent %></div>
     </div>
-  </div>
-</body>
-
+  </body>
 </html>

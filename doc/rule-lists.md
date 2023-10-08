@@ -1,8 +1,8 @@
 # Working with the rule lists
 
-INCLUSIFY provides suggestions for word replacements. These suggestions are based on large lists of rules. Most of these rules have been created in semi-automatic ways and by reusing existing lists (see TODO). When using INCLUSIFY, users will probably occasionally make requests to the admins to remove, add, and change rules. This is possible by editing the rule file.
+DIVERSIFIX provides suggestions for word replacements. These suggestions are based on large lists of rules. Most of these rules have been created in semi-automatic ways and by reusing existing lists (see TODO). When using DIVERSIFIX, users will probably occasionally make requests to the admins to remove, add, and change rules. This is possible by editing the rule file.
 
-The rules are stored in `inclusify_server/data/suggestions_editable.csv`. Unfortunately, the CSV file cannot be opened or imported correctly into Microsoft Excel, and it also exports into a not-so-clean format, so we advise to edit the file in a simple text editor or a CSV editor.
+The rules are stored in `diversifix_server/data/suggestions_editable.csv`. Unfortunately, the CSV file cannot be opened or imported correctly into Microsoft Excel, and it also exports into a not-so-clean format, so we advise to edit the file in a simple text editor or a CSV editor.
 
 ## Schema
 
@@ -82,4 +82,4 @@ The category number should be `0`, `1`, or `2`. We also give some examples of ru
 
 ## Processing
 
-The rule lists will autimatically be processed, so the rules can be used faster when the app is running. The processing happens in the `inclusify_server/prepare_list.py` module, and new/changed/deleted rules are automatically processed when the server (re)starts. The results are stored in `inclusify_server/data/suggestions_processed.csv`. That file should not be edited manually.
+The rule lists will autimatically be processed, so the rules can be used faster when the app is running. The processing happens in the `diversifix_server/prepare_list.py` module, and new/changed/deleted rules are automatically processed when the server (re)starts. The results are stored in `diversifix_server/data/suggestions_processed.csv`. That file should not be edited manually.

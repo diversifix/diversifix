@@ -8,7 +8,7 @@ async function main() {
       "-c",
       [
         "source $(conda info --base)/etc/profile.d/conda.sh",
-        "conda activate inclusify",
+        "conda activate diversifix",
         "pip install -r inclusify_server/requirements.in",
         "gunicorn inclusify_server.app:app --bind localhost:8081 --timeout 90",
       ].join(" && "),

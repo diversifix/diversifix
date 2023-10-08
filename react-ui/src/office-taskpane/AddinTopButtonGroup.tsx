@@ -1,9 +1,8 @@
 import { FC } from "react";
 import styled from "styled-components";
-import { InclusifyBamLogo, InclusifyLogo } from "../common/icons";
+import { DiversifixLogo } from "../common/icons";
 import { Colors } from "../common/styles/Colors";
 import { Fonts } from "../common/styles/Fonts";
-import { UserSettingsAndFeatureFlagsContext } from "../common/UserSettingsAndFeatureFlagsContext";
 import { UseState } from "../common/UseState";
 import { AddinCheckTextButton } from "./AddinCheckTextButton";
 import { AddinUserSettingsButton } from "./AddinUserSettingsButton";
@@ -19,7 +18,7 @@ interface AddinButtonGroupProps {
 }
 export const AddinTopButtonGroup: FC<AddinButtonGroupProps> = ({ onCheckClicked, settingsOpenState }) => (
   <AddinButtonGroupContainer>
-    <InclusifyLogoLinkTile />
+    <DiversifixLogoLinkTile />
     <AddinUserSettingsButton pressedState={settingsOpenState} />
     <AddinCheckTextButton onClick={onCheckClicked} />
   </AddinButtonGroupContainer>
@@ -31,21 +30,16 @@ const AddinButtonGroupContainer = styled.div`
   margin: 5px ${rightMargin} 0 ${leftMargin};
 `;
 
-const InclusifyLogoLinkTile = () => (
-  <InclusifyLogoLinkTileContainer href={logoLinkUrl} target={"_blank"}>
-    <UserSettingsAndFeatureFlagsContext.Consumer>
-      {({ featureFlags }) => (
-        <>
-          <InclusifyLogoContainer>
-            {featureFlags.isBamBuild ? <InclusifyBamLogo /> : <InclusifyLogo />}
-          </InclusifyLogoContainer>
-          <InclusifyLogoLinkText>einfach diversitätssensibel.</InclusifyLogoLinkText>
-        </>
-      )}
-    </UserSettingsAndFeatureFlagsContext.Consumer>
-  </InclusifyLogoLinkTileContainer>
+const DiversifixLogoLinkTile = () => (
+  <DiversifixLogoLinkTileContainer href={logoLinkUrl} target={"_blank"}>
+    <DiversifixLogoContainer>
+      <DiversifixLogo width="100%" />
+    </DiversifixLogoContainer>
+    <DiversifixLogoLinkText>EINFACH DIVERSITÄTSSENSIBEL</DiversifixLogoLinkText>
+  </DiversifixLogoLinkTileContainer>
 );
-const InclusifyLogoLinkTileContainer = styled.a`
+
+const DiversifixLogoLinkTileContainer = styled.a`
   background: #ffffff 0% 0% no-repeat padding-box;
   box-shadow: 0px 3px 6px #00000029;
   border-radius: 8px;
@@ -66,13 +60,13 @@ const InclusifyLogoLinkTileContainer = styled.a`
     background: #f3f3f3;
   }
 `;
-const InclusifyLogoContainer = styled.div`
+const DiversifixLogoContainer = styled.div`
   width: 100%;
   display: flex;
   max-height: 30px;
   align-items: center;
 `;
-const InclusifyLogoLinkText = styled.div`
+const DiversifixLogoLinkText = styled.div`
   font-family: ${Fonts.bam.family};
   font-size: 9px;
   line-height: 10.5px;

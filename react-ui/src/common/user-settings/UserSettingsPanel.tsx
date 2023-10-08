@@ -40,7 +40,7 @@ export const UserSettingsPanel: FC<UserSettingsPanelProps> = ({ userSettingsStat
                 Standardeinstellungen basieren auf dem BAM Leitfaden für diversitätssensible Sprache.
               </DefaultSettingsExplanation>
             )}
-            <SettingsSectionTitle>Gendersprache</SettingsSectionTitle>
+            <SettingsSectionTitle>Genderstil</SettingsSectionTitle>
             <OptionList
               optionGroupId="genderingType"
               options={genderingTypes}
@@ -105,6 +105,21 @@ export const UserSettingsPanel: FC<UserSettingsPanelProps> = ({ userSettingsStat
                 />
               </>
             )}
+            <>
+              <SettingsSectionTitle>Sprachmodell</SettingsSectionTitle>
+              <OptionList
+                optionGroupId="aiModel"
+                options={[
+                  { id: "default", label: "Regelbasiert" },
+                  { id: "gpt-3.5-turbo", label: "GPT-3.5 Turbo (experimentell)" },
+                  { id: "gpt-4", label: "GPT-4 (experimentell)" },
+                ]}
+                optionState={[
+                  userSettings.aiModel,
+                  (aiModel) => setUserSettings((oldSettings) => ({ ...oldSettings, aiModel })),
+                ]}
+              />
+            </>
             <ConfirmButtonBar>
               <ResetButton
                 title="Auf Standardeinstellungen zurücksetzen"

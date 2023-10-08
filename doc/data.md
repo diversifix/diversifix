@@ -22,7 +22,7 @@ We have explored multiple data sets. The links go to Jupyter Notebooks describin
 
 - [ ] [**C4-german**](https://german-nlp-group.github.io/projects/gc4-corpus.html) (external link) is another very large corpus for German focusing more on recent data. It could be mined in a similar fashion as we have done with DeReKo.
 
-The unified data from geschicktgendern and DeReKo can be found in [`data/unified.csv`](../data/unified.csv). A version of this is in [`inclusify_server/data/suggestions_editable.csv`](../inclusify_server/data/suggestions_editable.csv), and is intended to be edited by BAM during the course of the further testing phase. The format of these rule files is explained [here](./rule-lists.md).
+The unified data from geschicktgendern and DeReKo can be found in [`data/unified.csv`](../data/unified.csv). A version of this is in [`diversifix_server/data/suggestions_editable.csv`](../diversifix_server/data/suggestions_editable.csv), and is intended to be edited by BAM during the course of the further testing phase. The format of these rule files is explained [here](./rule-lists.md).
 
 ## Running the Jupyter Notebooks
 

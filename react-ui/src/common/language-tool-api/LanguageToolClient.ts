@@ -17,6 +17,7 @@ export class LanguageToolClient {
         language: "de-DE",
         enabledOnly: true,
         enabledCategories: enabledRuleCategories.join(","),
+        ...userSettings,
       }),
       delay(featureFlags.minimumRequestDelayMs),
     ]);

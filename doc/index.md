@@ -1,4 +1,4 @@
-# INCLUSIFY App Technical Documentation
+# DIVERSIFIX App Technical Documentation
 
 _Note: We have only used macOS and Linux for development, so these development instructions might be incomplete for a Windows environment._
 

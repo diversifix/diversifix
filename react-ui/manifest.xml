@@ -5,15 +5,15 @@
   xmlns:ov="http://schemas.microsoft.com/office/taskpaneappversionoverrides" xsi:type="TaskPaneApp">
   <Id>72ce8f80-0fca-4808-8397-f2972f7e214c</Id>
   <Version>1.0.0.0</Version>
-  <ProviderName>Tech4Germany 2021</ProviderName>
+  <ProviderName>Diversifix e. V. 2022</ProviderName>
   <DefaultLocale>de-DE</DefaultLocale>
-  <DisplayName DefaultValue="INCLUSIFY"/>
-  <Description DefaultValue="INCLUSIFY - einfach diversitätssensibel."/>
+  <DisplayName DefaultValue="DIVERSIFIX"/>
+  <Description DefaultValue="DIVERSIFIX - einfach diversitätssensibel."/>
   <IconUrl DefaultValue="https://localhost:3000/favicon-32.png"/>
-  <HighResolutionIconUrl DefaultValue="https://localhost:3000/favicon-80.png"/>
-  <SupportUrl DefaultValue="https://github.com/tech4germany/bam-inclusify"/>
+  <HighResolutionIconUrl DefaultValue="https://localhost:3000/favicon-64.png"/>
+  <SupportUrl DefaultValue="https://diversifix.org/support/"/>
   <AppDomains>
-    <AppDomain>https://github.com/tech4germany/bam-inclusify</AppDomain>
+    <AppDomain>https://diversifix.org</AppDomain>
   </AppDomains>
   <Hosts>
     <Host Name="Document"/>
@@ -68,11 +68,11 @@
         <bt:Url id="Taskpane.Url" DefaultValue="https://localhost:3000/taskpane.html"/>
       </bt:Urls>
       <bt:ShortStrings>
-        <bt:String id="CommandsGroup.Label" DefaultValue="INCLUSIFY"/>
-        <bt:String id="TaskpaneButton.Label" DefaultValue="INCLUSIFY öffnen"/>
+        <bt:String id="CommandsGroup.Label" DefaultValue="DIVERSIFIX"/>
+        <bt:String id="TaskpaneButton.Label" DefaultValue="DIVERSIFIX öffnen"/>
       </bt:ShortStrings>
       <bt:LongStrings>
-        <bt:String id="TaskpaneButton.Tooltip" DefaultValue="Klicken Sie hier, um das INCLUSIFY Add-In anzuzeigen"/>
+        <bt:String id="TaskpaneButton.Tooltip" DefaultValue="Klicken Sie hier, um das DIVERSIFIX Add-In anzuzeigen"/>
       </bt:LongStrings>
     </Resources>
   </VersionOverrides>

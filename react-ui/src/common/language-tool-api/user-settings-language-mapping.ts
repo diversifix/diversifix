@@ -6,6 +6,7 @@ const GENDER_STAR = "*";
 export function mapUserSettingsToReplacementPostProcessing(
   userSettings: UserSettings
 ): (value: string | undefined) => string | undefined {
+  if (userSettings.aiModel !== "default") return (value) => value;
   if (userSettings.genderingType === "neutral") return mapNeutral;
   if (userSettings.genderingType === "double-notation") return removeGenderStar;
   if (userSettings.genderingType === "internal-i") return mapInternalI;

@@ -13,7 +13,6 @@ import { isFunction } from "../common/type-helpers";
 import { AddinTopButtonGroup } from "./AddinTopButtonGroup";
 import { UserSettingsAndFeatureFlagsContext } from "../common/UserSettingsAndFeatureFlagsContext";
 import { SetState } from "../common/UseState";
-import { PilotPhaseBanner } from "../common/PilotPhaseBanner";
 import { leftMargin, rightMargin } from "./taskpane-style-constants";
 import { ImpressumAndDatenschutzLinks } from "../common/ImpressumAndDatenschutzLinks";
 
@@ -45,9 +44,6 @@ export const TaskpaneApp: FC = () => {
   return (
     <AddinContainer>
       <UserSettingsAndFeatureFlagsContext.Provider value={{ userSettings, featureFlags }}>
-        <PilotPhaseBannerContainer>
-          <PilotPhaseBanner />
-        </PilotPhaseBannerContainer>
         <AddinTopButtonGroup
           onCheckClicked={checkTextWithLoading}
           settingsOpenState={[isSettingsOpen, setSettingsOpen]}
@@ -89,10 +85,6 @@ const AddinContainer = styled.div`
   display: flex;
   flex-direction: column;
   height: 100%;
-`;
-
-const PilotPhaseBannerContainer = styled.div`
-  margin: 0 ${rightMargin} 0 ${leftMargin};
 `;
 
 const SummaryBarContainer = styled.div`

@@ -55,10 +55,15 @@ export const StandaloneApp: FC = () => {
     }
   };
 
+  const windowUrl = window.location.search;
+  const params = new URLSearchParams(windowUrl);
+  const hideHeader = params.get("hideHeader") === "true";
+  const hideFooter = params.get("hideFooter") === "true";
+
   return (
     <StandaloneAppContainer>
       <UserSettingsAndFeatureFlagsContext.Provider value={{ userSettings, featureFlags }}>
-        <NavigationBar />
+        {hideHeader ? "" : <NavigationBar />}
         <div>
           <CenteredContainer>
             <TopBarContainer>
@@ -117,7 +122,7 @@ export const StandaloneApp: FC = () => {
           </CenteredContainer>
         </div>
 
-        <ImpressumAndDatenschutzLinks />
+        {hideFooter ? "" : <ImpressumAndDatenschutzLinks />}
       </UserSettingsAndFeatureFlagsContext.Provider>
       <DebugPanel
         featureFlagsState={[featureFlags, setFeatureFlags]}

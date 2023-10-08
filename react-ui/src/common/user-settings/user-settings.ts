@@ -14,6 +14,7 @@ export interface UserSettings {
   customGenderSymbol: string;
   grammarCheckEnabled: boolean;
   spellCheckEnabled: boolean;
+  aiModel: string;
 }
 export function isSpellCheckOn(userSettings: UserSettings, featureFlags: FeatureFlags): boolean {
   return userSettings.spellCheckEnabled && featureFlags.spellCheckAvailable;

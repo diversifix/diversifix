@@ -9,21 +9,21 @@ ARG REACT_APP_SHOW_IMPRESSUM_AND_DATENSCHUTZ
 RUN apt-get update && \
   apt-get install -y zip
 
-RUN adduser --quiet --disabled-password --shell /bin/bash --home /home/inclusify --gecos "" inclusify
-USER inclusify
+RUN adduser --quiet --disabled-password --shell /bin/bash --home /home/diversifix --gecos "" diversifix
+USER diversifix
 
-WORKDIR /home/inclusify/inclusify-build
+WORKDIR /home/diversifix/diversifix-build
 
-ENV PATH="${PATH}:/home/inclusify/.yarn/bin"
+ENV PATH="${PATH}:/home/diversifix/.yarn/bin"
 RUN yarn global add devcmd-cli
 
-ADD --chown=inclusify:inclusify ./dev_cmds/ dev_cmds/
+ADD --chown=diversifix:diversifix ./dev_cmds/ dev_cmds/
 RUN cd dev_cmds && yarn install
 
-ADD --chown=inclusify:inclusify ./react-ui/ react-ui/
+ADD --chown=diversifix:diversifix ./react-ui/ react-ui/
 RUN cd react-ui && yarn install
 
-ADD --chown=inclusify:inclusify . .
+ADD --chown=diversifix:diversifix . .
 RUN devcmd setup
 RUN devcmd prepare-server
 
@@ -38,31 +38,31 @@ RUN apt-get update && \
   apt-get install -y gunicorn && \
   rm -rf /var/lib/apt/lists/*
 
-RUN adduser --quiet --disabled-password --shell /bin/bash --home /home/inclusify --gecos "" inclusify
-USER inclusify
-WORKDIR /home/inclusify/inclusify-build
+RUN adduser --quiet --disabled-password --shell /bin/bash --home /home/diversifix --gecos "" diversifix
+USER diversifix
+WORKDIR /home/diversifix/diversifix-build
 
-COPY --from=builder --chown=inclusify:inclusify /home/inclusify/inclusify-build/inclusify_server ./inclusify_server
-RUN pip install --no-warn-script-location --disable-pip-version-check -r inclusify_server/requirements.in
-RUN python3 -m inclusify_server.download_language_models
+COPY --from=builder --chown=diversifix:diversifix /home/diversifix/diversifix-build/diversifix_server ./diversifix_server
+RUN pip install --no-warn-script-location --disable-pip-version-check -r diversifix_server/requirements.in
+RUN python3 -m diversifix_server.download_language_models
 
-ENV INCLUSIFY_BIND_HOST=0.0.0.0
-ENV INCLUSIFY_BIND_PORT=80
-ENV INCLUSIFY_STARTUP_TIMEOUT_SEC=900
+ENV DIVERSIFIX_BIND_HOST=0.0.0.0
+ENV DIVERSIFIX_BIND_PORT=80
+ENV DIVERSIFIX_STARTUP_TIMEOUT_SEC=900
 
 EXPOSE ${BIND_PORT}
 
-CMD gunicorn inclusify_server.app:app \
-  --bind ${INCLUSIFY_BIND_HOST}:${INCLUSIFY_BIND_PORT} \
-  --timeout ${INCLUSIFY_STARTUP_TIMEOUT_SEC}
+CMD gunicorn diversifix_server.app:app \
+  --bind ${DIVERSIFIX_BIND_HOST}:${DIVERSIFIX_BIND_PORT} \
+  --timeout ${DIVERSIFIX_STARTUP_TIMEOUT_SEC}
 
 ARG BUILD_DATE
 ARG VCS_REVISION
 
 # OCI Labels as per https://github.com/opencontainers/image-spec/blob/main/annotations.md
 LABEL org.opencontainers.image.created=$BUILD_DATE
-LABEL org.opencontainers.image.title="inclusify-app"
-LABEL org.opencontainers.image.description="INCLUSIFY - einfach diversitätssensibel."
-LABEL org.opencontainers.image.url="https://github.com/tech4germany/bam-inclusify"
-LABEL org.opencontainers.image.source="https://github.com/tech4germany/bam-inclusify"
+LABEL org.opencontainers.image.title="diversifix-app"
+LABEL org.opencontainers.image.description="DIVERSIFIX - einfach diversitätssensibel."
+LABEL org.opencontainers.image.url="https://github.com/diversifix/diversifix"
+LABEL org.opencontainers.image.source="https://github.com/diversifix/diversifix"
 LABEL org.opencontainers.image.revision=$VCS_REVISION

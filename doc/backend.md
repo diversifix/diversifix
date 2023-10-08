@@ -1,4 +1,4 @@
-# INCLUSIFY App - Python Backend Documentation
+# DIVERSIFIX App - Python Backend Documentation
 
 The backend is written in Python 3.9 and uses the [Flask](https://flask.palletsprojects.com/en/2.0.x/) framework. It serves both the static frontend pages, and an API for retrieving diversity suggestions for a given text. For development, the server can be started as a simple Python module. For production, it is recommended to use a proper server; we will use [gunicorn](https://gunicorn.org/) as a server.
 
@@ -21,13 +21,13 @@ The following steps are automated in the Docker image, see [here](./development-
      Make sure Conda is installed and initialized with `conda init bash` (or the name of your shell). Then:
 
      ```
-     conda create --name inclusify --channel conda-forge python=3.9 pip && conda activate inclusify
+     conda create --name diversifix --channel conda-forge python=3.9 pip && conda activate diversifix
      ```
 
 2. Inside the environment, use pip for installing the dependencies:
 
    ```
-   pip install -r inclusify_server/requirements.in
+   pip install -r diversifix_server/requirements.in
    ```
 
    (This is also for Anaconda/Miniconda environments, because not all of our dependencies are published in Anaconda channels.)
@@ -37,13 +37,13 @@ The following steps are automated in the Docker image, see [here](./development-
    - For development, run the Python module:
 
      ```
-     python -m inclusify_server.app
+     python -m diversifix_server.app
      ```
 
    - For pruduction, with gunicorn:
 
      ```
-     gunicorn inclusify_server.app:app --bind localhost:8081 --timeout 90
+     gunicorn diversifix_server.app:app --bind localhost:8081 --timeout 90
      ```
 
      Any desired port can be specified here instead of `8081`. For Python frameworks, there is the compatibility standard _WSGI_ for communication between web frameworks and servers. Flask is WSGI-compatible, so you can use any WSGI-compatible server to serve it.
@@ -109,13 +109,13 @@ The following steps are automated in the Docker image, see [here](./development-
 
 ### Compatibility with LanguageTool
 
-We have previously used [LanguageTool](https://github.com/languagetool-org/languagetool), a powerful open source grammar checker, for our backend. Our frontend is compatible with the [LanguageTool API](https://languagetoolplus.com/http-api/#/default) and could be used to display suggestions from LanguageTool. The server API therefore mimicks the LanguageTool API, but only to the very small extent which our frontend actually uses. In the future, the API could be extended to fully cover the LanguageTool API, and then the various [LanguageTool frontends](https://dev.languagetool.org/software-that-supports-languagetool-as-a-plug-in-or-add-on) could be used with INCLUSIFY.
+We have previously used [LanguageTool](https://github.com/languagetool-org/languagetool), a powerful open source grammar checker, for our backend. Our frontend is compatible with the [LanguageTool API](https://languagetoolplus.com/http-api/#/default) and could be used to display suggestions from LanguageTool. The server API therefore mimicks the LanguageTool API, but only to the very small extent which our frontend actually uses. In the future, the API could be extended to fully cover the LanguageTool API, and then the various [LanguageTool frontends](https://dev.languagetool.org/software-that-supports-languagetool-as-a-plug-in-or-add-on) could be used with DIVERSIFIX.
 
 This could be especially interesting for 2 scenarios:
 
-- Integration of INCLUSIFY into LibreOffice. There is an open source LanguageTool add-in for LibreOffice. This could be forked, and controls for gender style etc could be added. For LibreOffice, a much better UI integration is possible than it is possible for Microsoft Word. Especially with the long-term plan of the government to use CollaboraOffice, essentially a web version of LibreOffice, as part of the [Phoenix suite](https://www.phoenix-werkstatt.de/), this scenario could become very relevant. We have not checked whether LibreOffice extensions also work with CollaboraOffice.
+- Integration of DIVERSIFIX into LibreOffice. There is an open source LanguageTool add-in for LibreOffice. This could be forked, and controls for gender style etc could be added. For LibreOffice, a much better UI integration is possible than it is possible for Microsoft Word. Especially with the long-term plan of the government to use CollaboraOffice, essentially a web version of LibreOffice, as part of the [Phoenix suite](https://www.phoenix-werkstatt.de/), this scenario could become very relevant. We have not checked whether LibreOffice extensions also work with CollaboraOffice.
 
-- Integration of INCLUSIFY into web browsers. It is a lot of effort to build a browser extension (although [FairLanguage](https://github.com/fairlanguage) have attempted this). The LanguageTool browser extensions can be configured to work with a custom server in the settings of the extensions. This is probably too much to expect from users, but these settings can be configured via the Windows registry or a configuration file on MacOS, and these can be managed centrally (via Group Policy settings on Windows) within an organization (more specific documentation is available from [LanguageTool](support@languagetoolplus.com)). However, the LanguageTool browser extensions are not open source, and it is not possible to integrate own settings into them. We tried to circumvene this restriction by implementing the various gender styles as different languages in the LanguageTool API, but the in the browser extensions the list of languages is fixed rather than loaded from the list of languages from the API (see [this issue](https://forum.languagetool.org/t/firefox-add-on-new-language/6105)), and this is not expected to be changed soon.
+- Integration of DIVERSIFIX into web browsers. It is a lot of effort to build a browser extension (although [FairLanguage](https://github.com/fairlanguage) have attempted this). The LanguageTool browser extensions can be configured to work with a custom server in the settings of the extensions. This is probably too much to expect from users, but these settings can be configured via the Windows registry or a configuration file on MacOS, and these can be managed centrally (via Group Policy settings on Windows) within an organization (more specific documentation is available from [LanguageTool](support@languagetoolplus.com)). However, the LanguageTool browser extensions are not open source, and it is not possible to integrate own settings into them. We tried to circumvene this restriction by implementing the various gender styles as different languages in the LanguageTool API, but the in the browser extensions the list of languages is fixed rather than loaded from the list of languages from the API (see [this issue](https://forum.languagetool.org/t/firefox-add-on-new-language/6105)), and this is not expected to be changed soon.
 
 In our project, we have decided to focus on the Word add-in and the website, both of which we have built from scratch, and compatibility with LanguageTool has become an afterthought. For future integrations, it may be useful to restore this compatibility by completely mimicking the LanguageTool API.
 
@@ -125,6 +125,6 @@ If compatiblity with LanguageTool is _not_ desired, it would be good to simplify
 
 The backend uses the NLP library [Stanza](https://stanfordnlp.github.io/stanza/) to perform grammatical analysis on the input text. Basically, all words are lemmatized, and then matched against an also lemmatized version of the rules. The suggestions are then adapted to the case (nominative, ...) and number (singular/plural) of the replaced word through the morphological dictionary [Morphy](https://morphy.wolfganglezius.de/). Subwordsplitting through [CharSplit](https://pypi.org/project/compound-split/) is used to also detect compound nouns. In the future, dependency parsing could take care of grammatically adjusting the dependent articles, adjectives, and pronouns.
 
-The code is further explained in comments in the Python files within the [`inclusify_server`](inclusify_server) directory, and suggestions for future improvements are given.
+The code is further explained in comments in the Python files within the [`diversifix_server`](diversifix_server) directory, and suggestions for future improvements are given.
 
 For information about the rule lists and how to edit them, see [here](./rule-lists.md).

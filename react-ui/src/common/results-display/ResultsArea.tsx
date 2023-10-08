@@ -24,6 +24,7 @@ import { WelcomeMessage } from "../message-panels/WelcomeMessage";
 import { UserSettingsAndFeatureFlagsContext } from "../UserSettingsAndFeatureFlagsContext";
 import { SetState, UseState } from "../UseState";
 import { ExpandCollapse } from "./ExpandCollapse";
+import { AddInMessage } from "../message-panels/AddInMessage";
 
 export type ApplyReplacementFunction = (ruleMatch: RuleMatch, replacementText: string) => Promise<void>;
 
@@ -57,7 +58,10 @@ export const ResultsArea: FC<ResultsAreaProps> = ({
       ) : isLoading ? (
         <LoadingMessage />
       ) : ruleMatches === null ? (
-        <WelcomeMessage />
+        <div>
+          <WelcomeMessage />
+          <AddInMessage />
+        </div>
       ) : ruleMatches.length === 0 ? (
         <CompletionMessage />
       ) : (

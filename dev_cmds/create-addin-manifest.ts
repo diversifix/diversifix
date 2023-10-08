@@ -12,7 +12,7 @@ async function main(...args: string[]) {
     console.error(`  devcmd ${scriptName} <HOST>`);
     console.error();
     console.error(
-      `  where <HOST> is the host where the Office Addins gets its assets, e.g. https://inclusify.my.domain`
+      `  where <HOST> is the host where the Office Addins gets its assets, e.g. https://diversifix.my.domain`
     );
     process.exit(1);
   }

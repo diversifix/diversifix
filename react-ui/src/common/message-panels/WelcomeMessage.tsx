@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { Colors } from "../styles/Colors";
 import { Fonts } from "../styles/Fonts";
 import wavingHandEmojiSrc from "../icons/waving-hand-emoji.png";
+import { UserSettingsAndFeatureFlagsContext } from "../UserSettingsAndFeatureFlagsContext";
 
 export const WelcomeMessage = () => (
   <WelcomeMessageContainer>
@@ -10,18 +11,23 @@ export const WelcomeMessage = () => (
         <IntroIcon src={wavingHandEmojiSrc} alt="Waving hand emoji" />
       </IntroIconContainer>
       <IntroTextColumn>
-        <WelcomeMessageIntroLarge>Herzlich Willkommen bei INCLUSIFY.</WelcomeMessageIntroLarge>
+        <WelcomeMessageIntroLarge>Herzlich Willkommen bei DIVERSIFIX.</WelcomeMessageIntroLarge>
       </IntroTextColumn>
     </WelcomeMessageIntroBox>
     <WelcomeMessageBody>
-      Prüfe Deine Texte auf Diversitätslücken. INCLUSIFY ist aktuell basierend auf den Präferenzen des BAM Leitfadens
-      für geschlechtersensible Sprache eingestellt. Wenn Du eine andere Gendersprache bevorzugst, kannst Du das in den
-      Einstellungen anpassen.
+      Prüfe Deine Texte auf Diversitäts&shy;lücken.
+      <UserSettingsAndFeatureFlagsContext.Consumer>
+        {({ featureFlags }) =>
+          featureFlags.isBamBuild
+            ? " DIVERSIFIX ist aktuell basierend auf den Präferenzen des BAM Leitfadens für geschlechtersensible Sprache eingestellt. Wenn Du einen anderen Genderstil bevorzugst, kannst Du das in den Einstellungen anpassen."
+            : " Standardmäßig werden dir Alternativen in neutraler Form oder Doppelnennung vorgeschlagen. In den Einstellungen kannst Du auch einen anderen Genderstil auswählen."
+        }
+      </UserSettingsAndFeatureFlagsContext.Consumer>
     </WelcomeMessageBody>
   </WelcomeMessageContainer>
 );
 
-const WelcomeMessageContainer = styled.div`
+export const WelcomeMessageContainer = styled.div`
   font-family: ${Fonts.bam.family};
   font-style: italic;
   background: white;
@@ -67,7 +73,7 @@ const WelcomeMessageIntroLarge = styled.p`
   letter-spacing: 0.2px;
 `;
 
-const WelcomeMessageBody = styled.p`
+export const WelcomeMessageBody = styled.p`
   margin: 15px 13px;
   font-weight: ${Fonts.bam.weights.normal};
   font-size: 16px;

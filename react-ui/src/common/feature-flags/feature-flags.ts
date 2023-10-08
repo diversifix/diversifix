@@ -11,13 +11,13 @@ export const DefaultFeatureFlags = Object.freeze({
   maxReplacementsPerRuleMatch: 5,
   isBamBuild: process.env.REACT_APP_BUILD_FOR_BAM === "1",
   minimumRequestDelayMs: 0,
-  apiBaseUrl: "/v2",
+  apiBaseUrl: process.env.REACT_APP_API_BASE_URL || "/v2",
   showIgnoreButton: false,
 });
 
 export type FeatureFlags = typeof DefaultFeatureFlags;
 
-export const FeatureFlagsStorage = new LocalStorageService("inclusify_app_feature_flags", DefaultFeatureFlags, {});
+export const FeatureFlagsStorage = new LocalStorageService("diversifix_app_feature_flags", DefaultFeatureFlags, {});
 
 export const useFeatureFlagsState: () => [FeatureFlags, (setState: (prevState: FeatureFlags) => FeatureFlags) => void] =
   () => {
