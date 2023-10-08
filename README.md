@@ -7,7 +7,7 @@
 
 ## About DIVERSIFIX
 
-_DIVERSIFIX_ is a software to support the practical use of diversity-sensitive language in German. It was originally developed under the name _INCLUSIFY_ during the [Tech4Germany Fellowship](https://tech.4germany.org/) 2021 together with the [_Federal Institute for Materials Research and Testing_](https://www.bam.de/) (Bundesanstalt für Materialforschung und –prüfung (BAM)). We have now founded [Diversifix e. V.](https://diversifix.org/about) contribute to its development and adoption.
+_DIVERSIFIX_ is a software to support the practical use of diversity-sensitive language in German. It was originally developed under the name _INCLUSIFY_ during the [Tech4Germany Fellowship](https://tech.4germany.org/) 2021 together with the [_Federal Institute for Materials Research and Testing_](https://www.bam.de/) (Bundesanstalt für Materialforschung und –prüfung (BAM)). We have now founded [Diversifix e.&nbsp;V.](https://diversifix.org/about) contribute to its development and adoption.
 
 Our goal is both to promote awareness for diversity and to make every-day use of diversity-sensitive language easier.
 
