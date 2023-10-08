@@ -6,7 +6,7 @@ import os
 import re
 import sys
 from tqdm import tqdm
-from inclusify_server.helpers import add_to_dict, add_to_dict_fast, open_, log
+from diversifix_server.helpers import add_to_dict, add_to_dict_fast, open_, log
 
 print("Loading morphological dictionary ...")
 cwd = os.path.dirname(os.path.realpath(__file__))

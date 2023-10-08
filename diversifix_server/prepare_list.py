@@ -1,9 +1,9 @@
-from inclusify_server.helpers import add_to_dict, open_
+from diversifix_server.helpers import add_to_dict, open_
 from os import path
 from tqdm import tqdm
 from typing import Dict, Tuple, List, Set, cast
 import csv
-import inclusify_server.download_language_models
+import diversifix_server.download_language_models
 import itertools
 import stanza
 
@@ -20,11 +20,11 @@ ProcessedRuleWithoutLemma = Tuple[str, str, str, int, str]
 
 def preprocess_rules() -> None:
     """
-    Checks the `inclusify_server/data/suggestions_editable.csv` file for changes, and when there are changes, it transfers them to `suggestions_processed.csv`. For new rules, the lemmas of the words in the rule are retrieved via Stanza, for faster matching when the app is running.
+    Checks the `diversifix_server/data/suggestions_editable.csv` file for changes, and when there are changes, it transfers them to `suggestions_processed.csv`. For new rules, the lemmas of the words in the rule are retrieved via Stanza, for faster matching when the app is running.
     The current approach how this is done, with an `.old` file is not optimal and should be completely rewritten. Ideally, the order of rows within `suggestions_editable.csv` should be transfered to `suggestions_processed.csv`, so that the admins can use the order of suggestions for prioritizing them.
     """
     print(
-        "Looking for rule changes in `inclusify_server/data/suggestions_editable.csv`."
+        "Looking for rule changes in `diversifix_server/data/suggestions_editable.csv`."
     )
     rules = read_rule_file("suggestions_editable.csv")
     old_rules = read_rule_file("suggestions_editable.csv.old")

@@ -10,7 +10,7 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  publish-inclusify-docker-image:
+  publish-diversifix-docker-image:
     runs-on: ubuntu-latest
 
     steps:
@@ -28,13 +28,13 @@ jobs:
           echo "BUILD_DATE=$(date -u +'%Y-%m-%dT%H:%M:%SZ')" >> $GITHUB_ENV
           echo "BUILD_DATE_FN=$(date -u +'%Y-%m-%d_%H%M%S')" >> $GITHUB_ENV
 
-      - name: Build the INCLUSIFY Docker image
+      - name: Build the diversifix Docker image
         run: |
           docker build . \
-            --tag ghcr.io/tech4germany/inclusify-app:${BUILD_DATE_FN} \
-            --tag ghcr.io/tech4germany/inclusify-app:latest \
+            --tag ghcr.io/tech4germany/diversifix-app:${BUILD_DATE_FN} \
+            --tag ghcr.io/tech4germany/diversifix-app:latest \
             -f build/docker-release/Dockerfile \
             --build-arg REACT_APP_SHOW_IMPRESSUM_AND_DATENSCHUTZ=1 \
             --build-arg BUILD_DATE=${BUILD_DATE} \
             --build-arg VCS_REVISION=${GITHUB_SHA}
-          docker push --all-tags ghcr.io/tech4germany/inclusify-app
+          docker push --all-tags ghcr.io/tech4germany/diversifix-app

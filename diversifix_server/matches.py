@@ -1,14 +1,14 @@
 from split_words import Splitter
 from copy import deepcopy
 from functools import lru_cache
-from inclusify_server.helpers import add_to_dict, log, open_
-from inclusify_server.morphy.morphy import inflect
-from inclusify_server.prepare_list import load_rules, ProcessedRuleWithoutLemma
+from diversifix_server.helpers import add_to_dict, log, open_
+from diversifix_server.morphy.morphy import inflect
+from diversifix_server.prepare_list import load_rules, ProcessedRuleWithoutLemma
 from typing import List, Dict, Tuple, cast
 from typing_extensions import TypedDict
 from stanza.models.common.doc import Word, Sentence
 import csv
-import inclusify_server.download_language_models
+import diversifix_server.download_language_models
 import itertools as it
 import re
 import stanza

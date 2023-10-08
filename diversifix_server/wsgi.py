@@ -1,4 +1,4 @@
-from inclusify_server.app import app
+from diversifix_server.app import app
 
 app = app
 
