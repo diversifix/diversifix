@@ -10,7 +10,8 @@ app = Flask(__name__, static_folder=None)
 @app.route("/", defaults=dict(filename=None))
 @app.route("/<path:filename>", methods=["GET"])
 def index(filename):
-    return "Hi! Please use the /v2/check endpoint via POST request.", 500
+    filename = filename or "index.html"
+    return send_from_directory("static", filename)
 
 
 @app.route("/v2/check", methods=["POST"])
