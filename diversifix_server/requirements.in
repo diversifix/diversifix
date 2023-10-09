@@ -7,3 +7,6 @@ mypy
 pylint
 stanza
 tqdm
+openai
+python-dotenv
+joblib

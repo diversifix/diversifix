@@ -1,3 +1,5 @@
 /diversifix_server.zip
 /manifest_*.xml
 .venv
+.env
+.cache
