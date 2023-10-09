@@ -44,6 +44,7 @@ WORKDIR /home/diversifix/diversifix-build
 
 COPY --from=builder --chown=diversifix:diversifix /home/diversifix/diversifix-build/diversifix_server ./diversifix_server
 RUN pip install --no-warn-script-location --disable-pip-version-check -r diversifix_server/requirements.in
+RUN rm -rf /home/diversifix/.cache/pip
 RUN python3 -m diversifix_server.download_language_models
 
 ENV DIVERSIFIX_BIND_HOST=0.0.0.0
