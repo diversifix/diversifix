@@ -36,6 +36,19 @@ _Note: This Docker image hosts the app without HTTPS. This is fine for local tes
 
 See [doc/index.md](./doc/index.md).
 
+## Technical report
+
+We have written a technical report, including an evaluation on our own benchmark for gender-inclusive language: [INCLUSIFY: A benchmark and a model for gender-inclusive German](https://arxiv.org/abs/2212.02564).
+
+```bibtex
+@article{pomerenke2022inclusify,
+  title={INCLUSIFY: A benchmark and a model for gender-inclusive German},
+  author={Pomerenke, David},
+  journal={arXiv preprint arXiv:2212.02564},
+  year={2022}
+}
+```
+
 ## License
 
 This repository contains code and content we created ourselves, as well as content that we retrieved from other sources (some of it modified by us).
