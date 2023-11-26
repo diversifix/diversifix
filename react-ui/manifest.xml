@@ -8,7 +8,7 @@
   <ProviderName>Diversifix e. V. 2022</ProviderName>
   <DefaultLocale>de-DE</DefaultLocale>
   <DisplayName DefaultValue="DIVERSIFIX"/>
-  <Description DefaultValue="DIVERSIFIX - einfach diversitätssensibel."/>
+  <Description DefaultValue="DIVERSIFIX - Einfach diversitätssensibel."/>
   <IconUrl DefaultValue="https://localhost:3000/favicon-32.png"/>
   <HighResolutionIconUrl DefaultValue="https://localhost:3000/favicon-64.png"/>
   <SupportUrl DefaultValue="https://diversifix.org/support/"/>

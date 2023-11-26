@@ -63,7 +63,7 @@ ARG VCS_REVISION
 # OCI Labels as per https://github.com/opencontainers/image-spec/blob/main/annotations.md
 LABEL org.opencontainers.image.created=$BUILD_DATE
 LABEL org.opencontainers.image.title="diversifix-app"
-LABEL org.opencontainers.image.description="DIVERSIFIX - einfach diversitätssensibel."
+LABEL org.opencontainers.image.description="DIVERSIFIX - Einfach diversitätssensibel."
 LABEL org.opencontainers.image.url="https://github.com/diversifix/diversifix"
 LABEL org.opencontainers.image.source="https://github.com/diversifix/diversifix"
 LABEL org.opencontainers.image.revision=$VCS_REVISION
