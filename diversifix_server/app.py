@@ -19,7 +19,7 @@ def index(filename):
 def serve_api():
     if "text" in request.form.keys():
         if "aiModel" in request.form and request.form["aiModel"] in [
-            "gpt-4",
+            "gpt-4-1106-preview",
             "gpt-3.5-turbo",
         ]:
             response = {

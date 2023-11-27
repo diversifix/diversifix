@@ -112,7 +112,7 @@ export const UserSettingsPanel: FC<UserSettingsPanelProps> = ({ userSettingsStat
                 options={[
                   { id: "default", label: "Regelbasiert" },
                   { id: "gpt-3.5-turbo", label: "GPT-3.5 Turbo (experimentell)" },
-                  { id: "gpt-4", label: "GPT-4 (experimentell)" },
+                  { id: "gpt-4-1106-preview", label: "GPT-4-Turbo (experimentell)" },
                 ]}
                 optionState={[
                   userSettings.aiModel,
