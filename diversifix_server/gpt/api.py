@@ -28,5 +28,10 @@ def ask_gpt(prompt, model="gpt-4"):
     )
     reply = completion.choices[0].message.content
     reply = reply.replace("```json\n", "").replace("\n```", "")
-    reply = json.loads(reply)
+    try:
+        reply = json.loads(reply)
+    except json.decoder.JSONDecodeError:
+        print("Error parsing JSON response from GPT-4.")
+        print(reply)
+        reply = []
     return reply
