@@ -1,7 +1,10 @@
-import os
 from flask import Flask, request, send_from_directory
 from flask_cors import cross_origin
-from diversifix_server.matches import matches, rules
+import time
+import json
+import joblib
+
+from diversifix_server.matches import matches
 from diversifix_server.gpt import matches as gpt_matches
 
 app = Flask(__name__, static_folder=None)
@@ -18,18 +21,31 @@ def index(filename):
 @cross_origin()
 def serve_api():
     if "text" in request.form.keys():
+        text = request.form["text"]
+
         if "aiModel" in request.form and request.form["aiModel"] in [
             "gpt-4-1106-preview",
             "gpt-3.5-turbo",
         ]:
-            response = {
-                "matches": gpt_matches(
-                    request.form["text"], model=request.form["aiModel"]
-                )
-            }
+            match_results = gpt_matches(text, model=request.form["aiModel"])
         else:
-            response = {"matches": matches(request.form["text"])}
-        return response, 200
+            match_results = matches(text)
+
+        log_data = {
+            "timestamp": time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()),
+            "user_ip_hash": joblib.hash(request.remote_addr),
+            "text_length": {
+                "characters": len(text),
+                "words": len(text.split()),
+                "paragraphs": len(text.split("\n\n")),
+            },
+            "num_matches": len(match_results),
+        }
+
+        with open("requests.log", "a") as file:
+            file.write(json.dumps(log_data) + "\n")
+
+        return {"matches": match_results}, 200
     else:
         return "No input text.", 500
 
