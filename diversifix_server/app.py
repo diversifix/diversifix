@@ -1,13 +1,20 @@
+import json
+import time
+
+import joblib
+import tiktoken
 from flask import Flask, request, send_from_directory
 from flask_cors import cross_origin
-import time
-import json
-import joblib
 
-from diversifix_server.matches import matches
 from diversifix_server.gpt import matches as gpt_matches
+# from diversifix_server.matches import matches
 
 app = Flask(__name__, static_folder=None)
+
+
+def get_tokens(text):
+    enc = tiktoken.encoding_for_model("gpt-4-1106-preview")
+    return enc.encode(text)
 
 
 @app.route("/", defaults=dict(filename=None))
@@ -29,7 +36,8 @@ def serve_api():
         ]:
             match_results = gpt_matches(text, model=request.form["aiModel"])
         else:
-            match_results = matches(text)
+            match_results = []
+            # match_results = matches(text)
 
         log_data = {
             "timestamp": time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()),
@@ -38,6 +46,7 @@ def serve_api():
                 "characters": len(text),
                 "words": len(text.split()),
                 "paragraphs": len(text.split("\n\n")),
+                "tokens": len(get_tokens(text)),
             },
             "num_matches": len(match_results),
         }

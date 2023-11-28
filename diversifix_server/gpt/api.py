@@ -2,7 +2,7 @@ import os
 from openai import OpenAI
 
 from dotenv import load_dotenv
-from diversifix_server.gpt.prompt import fast_prompt as system_prompt
+from diversifix_server.gpt.prompt import system_prompt, schema, example_messages
 import json
 from joblib import Memory
 
@@ -16,22 +16,32 @@ client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 def ask_gpt(prompt, model="gpt-4"):
     messages = [
         {"role": "system", "content": system_prompt},
+        # *example_messages,
         {"role": "user", "content": prompt},
-        {"role": "assistant", "content": "```json\n"},
     ]
     completion = client.chat.completions.create(
         model=model,
         temperature=0,
         messages=messages,
-        stop=["\n```"],
-        max_tokens=2000,
+        tools=[
+            {
+                "type": "function",
+                "function": {
+                    "name": "provide_inclusive_suggestions",
+                    "description": "Takes inclusive suggestions and shows them to the user.",
+                    "parameters": schema,
+                },
+            }
+        ],
+        tool_choice={
+            "type": "function",
+            "function": {"name": "provide_inclusive_suggestions"},
+        },
     )
-    reply = completion.choices[0].message.content
-    reply = reply.replace("```json\n", "").replace("\n```", "")
-    try:
-        reply = json.loads(reply)
-    except json.decoder.JSONDecodeError:
-        print("Error parsing JSON response from GPT-4.")
-        print(reply)
-        reply = []
-    return reply
+    tool_calls = completion.choices[0].message.tool_calls
+    if tool_calls:
+        response = tool_calls[0].function.arguments
+        response = json.loads(response)
+        if "matches" in response.keys():
+            return response["matches"]
+    return []

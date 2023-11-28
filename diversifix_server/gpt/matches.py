@@ -1,21 +1,23 @@
 from diversifix_server.gpt.api import ask_gpt
 
 
-def matches(text: str, model="gpt-4"):
+def matches(text: str, model: str):
     unchecked_text = text
     reply = ask_gpt(unchecked_text, model=model)
-    return [
-        adjust_match(m, text)
-        for m in reply
-        if m["level"] != "content" and m["severity"] >= 0.3
-    ]
+    matches = [adjust_match(m, text) for m in reply if m["severity"] >= 0.3]
+    return [m for m in matches if m is not None]
 
 
 def adjust_match(match, text):
-    sentence_offset = text.index(match["sentence"])
+    cotext = match["sentence"]
+    try:
+        sentence_offset = text.index(cotext)
+    except ValueError:
+        print(f'Could not find "{cotext}" in "{text}"')
+        return None
     offset_start, offset_end, changes = changed_words(
         [
-            match["sentence"],
+            cotext,
             *[suggestion["text"] for suggestion in match["suggestions"]],
         ]
     )
@@ -29,7 +31,7 @@ def adjust_match(match, text):
             for change in changes[1:]
         ],
         "offset": sentence_offset + offset_start,
-        "length": len(match["sentence"]) - offset_start - offset_end,
+        "length": len(cotext) - offset_start - offset_end,
         "context": {
             "text": changes[0],
             "offset": 0,
