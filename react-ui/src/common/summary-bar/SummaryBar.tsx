@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, PropsWithChildren } from "react";
 import styled from "styled-components";
 import { Colors } from "../styles/Colors";
 import { mapRuleCategory } from "../rule-categories";
@@ -14,7 +14,7 @@ interface SummaryBarProps {
   showSummaryBoxes: boolean;
 }
 
-export const SummaryBar: FC<SummaryBarProps> = ({
+export const SummaryBar: FC<PropsWithChildren<SummaryBarProps>> = ({
   diversityErrorCount,
   grammarErrorCount,
   spellingErrorCount,

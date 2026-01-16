@@ -1,7 +1,7 @@
-import { FC, useRef, useEffect, useState } from "react";
+import { FC, PropsWithChildren, useRef, useEffect, useState } from "react";
 import styled from "styled-components";
 
-export const ExpandCollapse: FC<{ isExpanded: boolean }> = ({ isExpanded, children }) => {
+export const ExpandCollapse: FC<PropsWithChildren<{ isExpanded: boolean }>> = ({ isExpanded, children }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const measurerRef = useRef<HTMLDivElement>(null);
   const heightRef = useRef(0);

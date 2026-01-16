@@ -1,0 +1,30 @@
+[project]
+name = "diversifix_server"
+version = "1.0.0"
+description = "DIVERSIFIX - Einfach diversitätssensibel."
+requires-python = ">=3.12"
+dependencies = [
+    "fastapi",
+    "uvicorn[standard]",
+    "python-multipart",  # Required for Form data in FastAPI
+    "joblib",
+    "openai",
+    "python-dotenv",
+    "split-words",
+    "stanza",
+    "tiktoken",
+    "tqdm",
+    # Security constraints for transitive dependencies
+    "torch>=2.6.0",
+    "filelock>=3.20.3",
+]
+
+[project.optional-dependencies]
+dev = [
+    "black",
+    "mypy",
+    "pylint",
+]
+
+[tool.uv]
+package = true

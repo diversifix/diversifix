@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, PropsWithChildren } from "react";
 import styled from "styled-components";
 
 export const ImpressumAndDatenschutzLinks: FC<{ isAddin?: boolean }> = ({ isAddin }) => (
@@ -29,7 +29,7 @@ const IDLinkContainer = styled.a`
   color: #aaa;
 `;
 
-const IDLink: FC<{ isAddin: boolean; href: string }> = ({ isAddin, href, children }) => (
+const IDLink: FC<PropsWithChildren<{ isAddin: boolean; href: string }>> = ({ isAddin, href, children }) => (
   <IDLinkContainer href={`${href}${isAddin ? "?returnTo=taskpane.html" : ""}`}>{children}</IDLinkContainer>
 );
 

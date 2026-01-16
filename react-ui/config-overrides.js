@@ -1,6 +1,6 @@
 // This file is used by 'react-app-rewired' (see https://github.com/timarney/react-app-rewired#readme )
 
-const ManifestPlugin = require("webpack-manifest-plugin");
+const { WebpackManifestPlugin } = require("webpack-manifest-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const path = require("path");
@@ -19,9 +19,9 @@ module.exports = {
       [taskpaneChunk]: ["./src/office-taskpane/taskpane.tsx"],
     };
 
-    const manifestPluginInstances = config.plugins.filter((p) => p instanceof ManifestPlugin);
+    const manifestPluginInstances = config.plugins.filter((p) => p instanceof WebpackManifestPlugin);
     if (manifestPluginInstances.length !== 1) {
-      throw new Error(`Expected one instance of ManifestPlugin but found (${manifestPluginInstances.length})`);
+      throw new Error(`Expected one instance of WebpackManifestPlugin but found (${manifestPluginInstances.length})`);
     }
     const htmlPluginInstances = config.plugins.filter((p) => p instanceof HtmlWebpackPlugin);
     if (htmlPluginInstances.length !== 1) {
@@ -30,7 +30,7 @@ module.exports = {
 
     const [defaultHtmlPlugin] = htmlPluginInstances;
     const otherPlugins = config.plugins.filter(
-      (p) => !(p instanceof ManifestPlugin) && !(p instanceof HtmlWebpackPlugin)
+      (p) => !(p instanceof WebpackManifestPlugin) && !(p instanceof HtmlWebpackPlugin)
     );
 
     defaultHtmlPlugin.options.chunks = [standaloneChunk];

@@ -1,4 +1,4 @@
-import React, { FC, useState } from "react";
+import React, { FC, PropsWithChildren, useState } from "react";
 import styled from "styled-components";
 import { CancelIcon, DownChevronIcon } from "../icons";
 import { Colors } from "../styles/Colors";
@@ -256,7 +256,7 @@ const MatchContentContainer = styled.div`
   margin: 0;
 `;
 
-const Replacement: FC<{ disabled: boolean; onClick: React.MouseEventHandler<HTMLButtonElement> | undefined }> = ({
+const Replacement: FC<PropsWithChildren<{ disabled: boolean; onClick: React.MouseEventHandler<HTMLButtonElement> | undefined }>> = ({
   onClick,
   disabled,
   children,

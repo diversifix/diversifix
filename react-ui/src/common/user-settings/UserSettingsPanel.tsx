@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, PropsWithChildren } from "react";
 import styled from "styled-components";
 import { Colors } from "../styles/Colors";
 import { GenderingType, GenderSymbol, UserSettings } from "./user-settings";
@@ -142,7 +142,7 @@ const UserSettingsPanelContainer = styled.div`
   border-radius: 20px 0px 20px 20px;
 `;
 
-const UserSettingsTitle: FC = ({ children }) => (
+const UserSettingsTitle: FC<PropsWithChildren> = ({ children }) => (
   <UserSettingsTitleContainer>
     <UserSettingsTitleText>{children}</UserSettingsTitleText>
     <UserSettingsTitleIcon />

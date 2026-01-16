@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from "react";
+import { FC, PropsWithChildren, useEffect, useState } from "react";
 import styled from "styled-components";
 import { DefaultFeatureFlags, FeatureFlags, isDebugPanelEnabled } from "../feature-flags/feature-flags";
 import { Fonts } from "../styles/Fonts";
@@ -115,7 +115,7 @@ type FilterProperties<T, U> = { [P in keyof T]: T[P] extends U ? P : never }[key
 interface CheckboxProps extends HasFeatureFlagsState {
   featureFlagId: FilterProperties<FeatureFlags, boolean>;
 }
-const Checkbox: FC<CheckboxProps> = ({
+const Checkbox: FC<PropsWithChildren<CheckboxProps>> = ({
   children,
   featureFlagId,
   featureFlagsState: [featureFlags, setFeatureFlags],
@@ -146,7 +146,7 @@ const NumberInputElement = styled.input`
 interface NumberInputProps extends HasFeatureFlagsState {
   featureFlagId: FilterProperties<FeatureFlags, number>;
 }
-const NumberInput: FC<NumberInputProps> = ({
+const NumberInput: FC<PropsWithChildren<NumberInputProps>> = ({
   children,
   featureFlagId,
   featureFlagsState: [featureFlags, setFeatureFlags],
@@ -177,7 +177,7 @@ const TextInputElement = styled.input`
 interface TextInputProps extends HasFeatureFlagsState {
   featureFlagId: FilterProperties<FeatureFlags, string>;
 }
-const TextInput: FC<TextInputProps> = ({
+const TextInput: FC<PropsWithChildren<TextInputProps>> = ({
   children,
   featureFlagId,
   featureFlagsState: [featureFlags, setFeatureFlags],

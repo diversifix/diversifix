@@ -29,23 +29,29 @@ RUN devcmd prepare-server
 
 
 #####
-# Release layer for final image
+# Release layer for final image using uv
 #####
 
-FROM python:3.9-bullseye
+FROM ghcr.io/astral-sh/uv:python3.12-bookworm-slim
 
 RUN apt-get update && \
-  apt-get install -y gunicorn && \
   rm -rf /var/lib/apt/lists/*
 
 RUN adduser --quiet --disabled-password --shell /bin/bash --home /home/diversifix --gecos "" diversifix
 USER diversifix
 WORKDIR /home/diversifix/diversifix-build
 
-COPY --from=builder --chown=diversifix:diversifix /home/diversifix/diversifix-build/diversifix_server ./diversifix_server
-RUN pip install --no-warn-script-location --disable-pip-version-check -r diversifix_server/requirements.in && \
-  rm -rf /home/diversifix/.cache/pip
-RUN python3 -m diversifix_server.download_language_models
+# Copy the server code
+COPY --from=builder --chown=diversifix:diversifix /home/diversifix/diversifix-build/backend ./backend
+
+# Install dependencies using uv (uses pyproject.toml)
+RUN cd backend && \
+  uv sync --frozen --no-dev && \
+  rm -rf /home/diversifix/.cache/uv
+
+# Download language models
+RUN cd backend && \
+  uv run python -m diversifix_server.download_language_models
 
 ENV DIVERSIFIX_BIND_HOST=0.0.0.0
 ENV DIVERSIFIX_BIND_PORT=80
@@ -53,9 +59,11 @@ ENV DIVERSIFIX_STARTUP_TIMEOUT_SEC=900
 
 EXPOSE ${BIND_PORT}
 
-CMD gunicorn diversifix_server.app:app \
-  --bind ${DIVERSIFIX_BIND_HOST}:${DIVERSIFIX_BIND_PORT} \
-  --timeout ${DIVERSIFIX_STARTUP_TIMEOUT_SEC}
+# Run with uvicorn (FastAPI is natively ASGI)
+CMD cd backend && uv run uvicorn diversifix_server.app:app \
+  --host ${DIVERSIFIX_BIND_HOST} \
+  --port ${DIVERSIFIX_BIND_PORT} \
+  --timeout-keep-alive ${DIVERSIFIX_STARTUP_TIMEOUT_SEC}
 
 ARG BUILD_DATE
 ARG VCS_REVISION
