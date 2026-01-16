@@ -2,7 +2,7 @@
 # Builder layer for React Frontend
 #####
 
-FROM node:14-bullseye AS builder
+FROM node:20-bookworm AS builder
 
 ARG REACT_APP_SHOW_IMPRESSUM_AND_DATENSCHUTZ
 
@@ -60,10 +60,8 @@ ENV DIVERSIFIX_STARTUP_TIMEOUT_SEC=900
 EXPOSE ${BIND_PORT}
 
 # Run with uvicorn (FastAPI is natively ASGI)
-CMD cd backend && uv run uvicorn diversifix_server.app:app \
-  --host ${DIVERSIFIX_BIND_HOST} \
-  --port ${DIVERSIFIX_BIND_PORT} \
-  --timeout-keep-alive ${DIVERSIFIX_STARTUP_TIMEOUT_SEC}
+WORKDIR /home/diversifix/diversifix-build/backend
+CMD ["sh", "-c", "uv run uvicorn diversifix_server.app:app --host ${DIVERSIFIX_BIND_HOST} --port ${DIVERSIFIX_BIND_PORT} --timeout-keep-alive ${DIVERSIFIX_STARTUP_TIMEOUT_SEC}"]
 
 ARG BUILD_DATE
 ARG VCS_REVISION
