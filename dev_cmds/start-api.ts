@@ -1,20 +1,29 @@
 import { execPiped, runAsyncMain } from "devcmd";
-import { repoRoot } from "./utils/paths";
+import { backendDir } from "./utils/paths";
 
 async function main() {
+  // Sync dependencies with uv
   await execPiped({
-    command: "bash",
+    command: "uv",
+    args: ["sync"],
+    options: {
+      cwd: backendDir,
+    },
+  });
+
+  // Start the API with uvicorn
+  await execPiped({
+    command: "uv",
     args: [
-      "-c",
-      [
-        "source $(conda info --base)/etc/profile.d/conda.sh",
-        "conda activate diversifix",
-        "pip install -r diversifix_server/requirements.in",
-        "gunicorn diversifix_server.app:app --bind localhost:8081 --timeout 90",
-      ].join(" && "),
+      "run",
+      "uvicorn",
+      "diversifix_server.app:app",
+      "--host", "localhost",
+      "--port", "8081",
+      "--reload",
     ],
     options: {
-      cwd: repoRoot,
+      cwd: backendDir,
     },
   });
 }

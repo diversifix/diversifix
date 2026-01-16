@@ -4,27 +4,27 @@ import { cyan } from "kleur";
 import path from "path";
 import archiver from "archiver";
 import { DEVCMD_COMMAND } from "./utils/commands";
-import { repoRoot, serverDir } from "./utils/paths";
+import { repoRoot, backendDir } from "./utils/paths";
 
 async function main() {
   await execPiped({ command: DEVCMD_COMMAND, args: ["prepare-server"] });
 
-  const serverDirName = path.relative(repoRoot, serverDir);
-  const zipFileName = `${serverDirName}.zip`;
+  const backendDirName = path.relative(repoRoot, backendDir);
+  const zipFileName = `${backendDirName}.zip`;
   const zipFilePath = path.join(repoRoot, zipFileName);
 
   await fs.remove(zipFilePath);
 
   console.log();
   console.log("Creating ZIP file...");
-  await createServerZip(serverDir, zipFilePath);
+  await createServerZip(backendDir, zipFilePath);
 
   console.log();
   console.log("Your ZIP file was built and is available here:");
   console.log("  " + cyan(zipFilePath));
 }
 
-function createServerZip(serverDir: string, zipFilePath: string) {
+function createServerZip(backendDir: string, zipFilePath: string) {
   const output = fs.createWriteStream(zipFilePath);
   const outputCompletionPromise = new Promise<void>((resolve, reject) => {
     output.on("close", () => resolve());
@@ -35,8 +35,8 @@ function createServerZip(serverDir: string, zipFilePath: string) {
   const archive = archiver("zip");
   archive.pipe(output);
 
-  const serverDirName = path.relative(repoRoot, serverDir);
-  archive.directory(serverDir, serverDirName);
+  const backendDirName = path.relative(repoRoot, backendDir);
+  archive.directory(backendDir, backendDirName);
 
   const archiveFinalizePromise = archive.finalize();
   return Promise.all([outputCompletionPromise, archiveFinalizePromise]);

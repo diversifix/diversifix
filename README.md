@@ -28,9 +28,16 @@ docker run --rm -p 80:80 -ti --pull always ghcr.io/diversifix/diversifix-app:lat
 
 Now you can open http://localhost in your web browser and use the DIVERSIFIX web-app from there! 🥳
 
-For using the experimental OpenAI API integration, specify your own API key via the flag `--env OPENAI_API_KEY=sk-xxxxxx` in the command abov.
+For using the experimental OpenAI API integration, specify your own API key via the flag `--env OPENAI_API_KEY=sk-xxxxxx` in the command above.
 
 _Note: This Docker image hosts the app without HTTPS. This is fine for local testing, but isn't appropriate for any kind of deployment where other people use the app. For actual production deployments, consider putting an HTTPS reverse proxy in front of the DIVERSIFIX container._
+
+## Tech Stack
+
+- **Backend**: Python 3.12+, FastAPI, uvicorn, Stanza NLP
+- **Frontend**: React, TypeScript
+- **Package Management**: [uv](https://docs.astral.sh/uv/) for Python, Yarn for JavaScript
+- **Deployment**: Docker with multi-stage builds
 
 ## Technical Documentation
 
