@@ -33,7 +33,7 @@ jobs:
           docker build . \
             --tag ghcr.io/diversifix/diversifix-app:${BUILD_DATE_FN} \
             --tag ghcr.io/diversifix/diversifix-app:latest \
-            -f build/docker-release/Dockerfile \
+            -f Dockerfile \
             --build-arg REACT_APP_SHOW_IMPRESSUM_AND_DATENSCHUTZ=1 \
             --build-arg BUILD_DATE=${BUILD_DATE} \
             --build-arg VCS_REVISION=${GITHUB_SHA}

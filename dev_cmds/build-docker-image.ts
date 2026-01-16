@@ -14,7 +14,7 @@ async function main() {
     args: [
       "build",
       ...["-t", APP_IMAGE_NAME],
-      ...["-f", path.join(repoRoot, "build/docker-release/Dockerfile")],
+      ...["-f", path.join(repoRoot, "Dockerfile")],
       ...["--build-arg", `BUILD_DATE=${new Date().toISOString()}`],
       ...["--build-arg", `VCS_REVISION=${gitSha}`],
       ".",
